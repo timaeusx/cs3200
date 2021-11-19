@@ -24,19 +24,17 @@ DROP TABLE IF EXISTS `tickets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tickets` (
   `idtickets` int NOT NULL AUTO_INCREMENT,
-  `expiration` datetime NOT NULL,
+  `expiration` date NOT NULL,
   `monthlypass` tinyint NOT NULL,
   `transitcard` int NOT NULL,
   `origin` varchar(10) NOT NULL,
   `destination` varchar(10) NOT NULL,
   UNIQUE KEY `idtickets_UNIQUE` (`idtickets`),
-  KEY `transitcard_idx` (`transitcard`),
   KEY `origin_idx` (`origin`),
   KEY `destination_idx` (`destination`),
   CONSTRAINT `destination` FOREIGN KEY (`destination`) REFERENCES `zones` (`zone`),
-  CONSTRAINT `origin` FOREIGN KEY (`origin`) REFERENCES `zones` (`zone`),
-  CONSTRAINT `transitcard` FOREIGN KEY (`transitcard`) REFERENCES `transitcards` (`idtransitcards`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `origin` FOREIGN KEY (`origin`) REFERENCES `zones` (`zone`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +43,7 @@ CREATE TABLE `tickets` (
 
 LOCK TABLES `tickets` WRITE;
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+INSERT INTO `tickets` VALUES (1,'2022-07-31',1,1,'1A','3'),(2,'2022-01-31',0,2,'9','1A'),(3,'2022-04-30',1,3,'5','7'),(4,'2022-02-14',0,1,'1A','6'),(5,'2022-11-27',0,2,'1A','4'),(6,'2022-03-16',0,2,'1A','1A');
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-18 11:09:41
+-- Dump completed on 2021-11-19 15:10:56

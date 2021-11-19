@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `transitcards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transitcards` (
-  `idtransitcards` int NOT NULL,
+  `idtransitcards` int NOT NULL AUTO_INCREMENT,
   `storedvalue` float NOT NULL DEFAULT '0',
-  `expiration` datetime NOT NULL,
+  `expiration` date NOT NULL,
   `userid` int NOT NULL,
   PRIMARY KEY (`idtransitcards`),
   UNIQUE KEY `idtransitcards_UNIQUE` (`idtransitcards`),
   KEY `userid` (`userid`),
   CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `transitcards` (
 
 LOCK TABLES `transitcards` WRITE;
 /*!40000 ALTER TABLE `transitcards` DISABLE KEYS */;
+INSERT INTO `transitcards` VALUES (1,24,'2026-03-21',1),(2,4.8,'2023-05-09',2),(3,18.7,'2024-07-16',3);
 /*!40000 ALTER TABLE `transitcards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-18 11:09:41
+-- Dump completed on 2021-11-19 15:10:57
