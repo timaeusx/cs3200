@@ -30,8 +30,7 @@ A `Zone` may be labeled `1A` or numbered from `1` to `10`, with the special zone
 - `User` has a one-to-many relationship with `TransitCard`
 - `TransitCard` has a one-to-many relationship with `Ticket`
 
-A UML diagram can be found here.
+A UML diagram can be found [here](/diagram.pdf).
 
-TODO:
-- Upload documentation to GitHub
-- Populate database with sample data
+### To-do list
+- All done for now!
