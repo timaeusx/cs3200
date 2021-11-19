@@ -29,7 +29,7 @@ CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `dob` varchar(45) NOT NULL,
+  `dob` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idusers_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-19 15:10:56
+-- Dump completed on 2021-11-19 15:49:03
