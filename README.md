@@ -1,6 +1,6 @@
 # CS3200 Final Project: Modeling Transportation Ticketing
 
-## Timothy Wang
+## Timothy Wang, Aidan Johansson
 
 ### Overview
 
