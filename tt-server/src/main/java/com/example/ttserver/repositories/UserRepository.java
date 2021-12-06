@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
   @Query(value="SELECT * FROM users", nativeQuery=true)
-  public List<User> findAllUsers();
+  List<User> findAllUsers();
 
   @Query(value="SELECT * FROM users WHERE id=:userId", nativeQuery=true)
-  public User findUserById(@Param("userId") Integer id);
+  User findUserById(@Param("userId") Integer id);
 }
