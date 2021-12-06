@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins="*")
 public class TransitCardDao {
   @Autowired
   TransitCardRepository transitCardRepository;
@@ -22,8 +23,8 @@ public class TransitCardDao {
   }
 
   @GetMapping("/api/transitcards/{cardId}")
-  public TransitCard findTransitCardById(@PathVariable("cardId") Integer idtransitcard) {
-    return transitCardRepository.findById(idtransitcard).get();
+  public TransitCard findTransitCardById(@PathVariable("cardId") Integer id) {
+    return transitCardRepository.findById(id).get();
   }
 
   @PutMapping("/api/transitcards/{cardId}")
