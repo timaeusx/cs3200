@@ -1,6 +1,6 @@
 # CS3200 Final Project: Modeling Transportation Ticketing
 
-## Timothy Wang, Aidan Johansson 
+## Tim Wang, Aidan Johansson 
 
 ### Overview
 
@@ -33,4 +33,10 @@ A `Zone` may be labeled `1A` or numbered from `1` to `10`, with the special zone
 A UML diagram can be found [here](/diagram.pdf).
 
 ### To-do list
-- All done for now!
+Implement web app:
+- Users list screen
+- Users edit screen
+- TransitCard list screen
+- TransitCard edit screen
+- Ticket list screen
+- Ticket edit screen
