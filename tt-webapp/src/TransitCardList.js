@@ -1,6 +1,10 @@
 import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import TransitCard from "./TransitCard";
+
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+})
 
 const TransitCardList = () => {
   const [transitcards, setTransitCards] = useState([]);
@@ -18,7 +22,8 @@ const TransitCardList = () => {
                 Card ID:&nbsp;{transitcard.idtransitcards}
                 <ul>
                   <li>
-                    Stored Value:&nbsp;{transitcard.storedvalue}
+                    Stored Value:&nbsp;
+                    {formatter.format(transitcard.storedvalue)}
                   </li>
                   <li>
                     Expiration:&nbsp;{transitcard.expiration}
