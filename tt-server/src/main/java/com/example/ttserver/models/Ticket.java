@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,22 +13,23 @@ import javax.persistence.Table;
 public class Ticket {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public Integer idtickets;
-  public Date expiration;
-  public Boolean monthlypass;
-  public Integer transitcard;
-  public String origin;
-  public String destination;
+  private Integer idtickets;
+  private Date expiration;
+  private Boolean monthlypass;
+  @ManyToOne
+  private TransitCard storedOn;
+  private String origin;
+  private String destination;
 
   public Ticket() {
   }
 
   public Ticket(Integer idtickets, Date expiration, Boolean monthlypass,
-      Integer transitcard, String origin, String destination) {
+      TransitCard storedOn, String origin, String destination) {
     this.idtickets = idtickets;
     this.expiration = expiration;
     this.monthlypass = monthlypass;
-    this.transitcard = transitcard;
+    this.storedOn = storedOn;
     this.origin = origin;
     this.destination = destination;
   }
@@ -56,12 +58,12 @@ public class Ticket {
     this.monthlypass = monthlypass;
   }
 
-  public Integer getTransitcard() {
-    return transitcard;
+  public TransitCard getStoredOn() {
+    return storedOn;
   }
 
-  public void setTransitcard(Integer transitcard) {
-    this.transitcard = transitcard;
+  public void setStoredOn(TransitCard transitcard) {
+    this.storedOn = transitcard;
   }
 
   public String getOrigin() {

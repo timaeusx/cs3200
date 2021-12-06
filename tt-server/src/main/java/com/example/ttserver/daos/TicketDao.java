@@ -2,6 +2,7 @@ package com.example.ttserver.daos;
 
 import com.example.ttserver.models.Ticket;
 import com.example.ttserver.repositories.TicketRepository;
+import com.example.ttserver.repositories.TransitCardRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins="*")
 public class TicketDao {
+  @Autowired
+  TransitCardRepository transitCardRepository;
+
+  @GetMapping("/api/transitcards/{cid}/tickets")
+  public List<Ticket> findTicketsByTransitCard(@PathVariable("cid") Integer id) {
+    return transitCardRepository.findById(id).get().getTickets();
+  }
+
   @Autowired
   TicketRepository ticketRepository;
 
@@ -33,7 +42,7 @@ public class TicketDao {
     Ticket ticket = ticketRepository.findTicketById(id);
     ticket.setExpiration(ticketUpdates.getExpiration());
     ticket.setMonthlypass(ticketUpdates.getMonthlypass());
-    ticket.setTransitcard(ticketUpdates.getTransitcard());
+    ticket.setStoredOn(ticketUpdates.getStoredOn());
     ticket.setOrigin(ticketUpdates.getOrigin());
     ticket.setDestination(ticketUpdates.getDestination());
     return ticketRepository.save(ticket);
