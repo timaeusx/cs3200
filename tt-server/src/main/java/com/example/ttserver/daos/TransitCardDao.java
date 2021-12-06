@@ -2,6 +2,7 @@ package com.example.ttserver.daos;
 
 import com.example.ttserver.models.TransitCard;
 import com.example.ttserver.repositories.TransitCardRepository;
+import com.example.ttserver.repositories.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,14 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins="*")
 public class TransitCardDao {
+  @Autowired
+  UserRepository userRepository;
+
+  @GetMapping("/api/users/{uid}/transitcards")
+  public List<TransitCard> findTransitCardsByUser(@PathVariable("uid") Integer id) {
+    return userRepository.findById(id).get().getTransitCards();
+  }
+
   @Autowired
   TransitCardRepository transitCardRepository;
 
@@ -33,7 +42,7 @@ public class TransitCardDao {
     TransitCard card = transitCardRepository.findTransitCardById(id);
     card.setStoredvalue(cardUpdates.getStoredvalue());
     card.setExpiration(cardUpdates.getExpiration());
-    card.setUserid(cardUpdates.getUserid());
+    card.setOwnedBy(cardUpdates.getOwnedBy());
     return transitCardRepository.save(card);
   }
 

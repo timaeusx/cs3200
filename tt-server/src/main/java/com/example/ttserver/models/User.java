@@ -1,5 +1,7 @@
 package com.example.ttserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -14,12 +16,15 @@ public class User {
   private String password;
   private String email;
   private String dob;
+  @OneToMany(mappedBy = "ownedBy")
+  @JsonIgnore
+  private List<TransitCard> transitCards;
 
   public User() {
   }
 
   public User(Integer id, String firstname, String lastname, String username,
-      String password, String email, String dob) {
+      String password, String email, String dob, List<TransitCard> transitCards) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -27,6 +32,7 @@ public class User {
     this.password = password;
     this.email = email;
     this.dob = dob;
+    this.transitCards = transitCards;
   }
 
   public Integer getId() {
@@ -83,5 +89,13 @@ public class User {
 
   public void setDob(String dob) {
     this.dob = dob;
+  }
+
+  public List<TransitCard> getTransitCards() {
+    return transitCards;
+  }
+
+  public void setTransitCards(List<TransitCard> transitCards) {
+    this.transitCards = transitCards;
   }
 }

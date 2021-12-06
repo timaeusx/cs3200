@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,17 +16,18 @@ public class TransitCard {
   private Integer idtransitcards;
   private Float storedvalue;
   private Date expiration;
-  private Integer userid;
+  @ManyToOne
+  private User ownedBy;
 
   public TransitCard() {
   }
 
   public TransitCard(Integer idtransitcards, Float storedvalue, Date expiration,
-      Integer userid) {
+      User ownedBy) {
     this.idtransitcards = idtransitcards;
     this.storedvalue = storedvalue;
     this.expiration = expiration;
-    this.userid = userid;
+    this.ownedBy = ownedBy;
   }
 
   public Integer getIdtransitcards() {
@@ -52,11 +54,11 @@ public class TransitCard {
     this.expiration = expiration;
   }
 
-  public Integer getUserid() {
-    return userid;
+  public User getOwnedBy() {
+    return ownedBy;
   }
 
-  public void setUserid(Integer userid) {
-    this.userid = userid;
+  public void setOwnedBy(User ownedBy) {
+    this.ownedBy = ownedBy;
   }
 }
