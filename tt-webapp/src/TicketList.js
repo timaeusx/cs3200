@@ -10,6 +10,10 @@ const TicketList = () => {
       .then(tickets => setTickets(tickets));
   useEffect(findTicketsById, [params.id])
   return(
+    <div>
+      <h1>
+        Tickets
+      </h1>
       <ul>
         {
           tickets.map(ticket =>
@@ -30,6 +34,7 @@ const TicketList = () => {
           )
         }
       </ul>
+    </div>
   );
 };
 export default TicketList;
