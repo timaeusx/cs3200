@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
+import {Link} from "react-router-dom"
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -14,12 +15,22 @@ const TransitCardList = () => {
       .then(res => res.json())
       .then(transitcards => setTransitCards(transitcards));
   useEffect(findTransitCardsById, [params.id])
+  const [tickets, setTickets] = useState([]);
+  const findTickets = () =>
+      fetch(`http://localhost:8080/api/transitcards/${params.id}/tickets`)
+      .then(res => res.json())
+      .then(tickets => setTickets(tickets))
+  useEffect(findTickets, [params.id])
   return(
+    <div>
+      <h1>
+        Cards
+      </h1>
       <ul>
         {
           transitcards.map(transitcard =>
               <li key={transitcard.idtransitcards}>
-                Card ID:&nbsp;{transitcard.idtransitcards}
+                Card #{transitcard.idtransitcards}
                 <ul>
                   <li>
                     Stored Value:&nbsp;
@@ -28,11 +39,18 @@ const TransitCardList = () => {
                   <li>
                     Expiration:&nbsp;{transitcard.expiration}
                   </li>
+                  {tickets.length > 0 &&
+                  <li key={transitcard.idtransitcards}>
+                    <Link to={`/transitcards/${transitcard.idtransitcards}`}>
+                      Tickets
+                    </Link>
+                  </li>}
                 </ul>
               </li>
           )
         }
       </ul>
+    </div>
   );
 };
 export default TransitCardList;
