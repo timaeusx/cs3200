@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Annie','Alstom','anniea','gxd6-dd1m-e7bc','annie@alstomgroup.com','1928-02-08'),(2,'Benjamin','Bombardier','benb','24q6-gg98-5t2y','ben@bombardier.com','1974-07-04'),(3,'William','Westinghouse','willw','45a9-ffg1-d5g0','will@westinghouse.com','1886-08-06');
+INSERT INTO `users` VALUES (1,'Annabeth','Alstom','anniea','gxd6-dd1m-e7bc','annie@alstomgroup.com','1928-02-08'),(2,'Benjamin','Bombardier','benb','24q6-gg98-5t2y','ben@bombardier.com','1974-07-04'),(3,'William','Westinghouse','willw','45a9-ffg1-d5g0','will@westinghouse.com','1886-08-06');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-06 13:51:34
+-- Dump completed on 2021-12-06 20:00:17
