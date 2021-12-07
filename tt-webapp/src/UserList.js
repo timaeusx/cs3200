@@ -19,14 +19,18 @@ const UserList = () => {
         </h1>
         <button className = "btn btn-primary"
                 onClick = {() => navigate("/users/new")}>
-          Add User
+          New User...
           </button>
         <ul className="list-group">
           {
             users.map(user =>
                 <li className="list-group-item" key={user.id}>
-                  <Link to={`/users/${user.id}`}>
-                    {user.firstname}&nbsp;{user.lastname}
+                  {user.firstname}&nbsp;{user.lastname}
+                  &nbsp;<Link to={`/users/${user.id}/edit`}>
+                    Edit
+                  </Link>
+                  &nbsp;<Link to={`/users/${user.id}/transitcards`}>
+                    View Cards
                   </Link>
                 </li>
             )
