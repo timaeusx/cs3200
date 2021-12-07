@@ -1,26 +1,30 @@
 import {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
-import {Link} from "react-router-dom"
+import {useNavigate} from "react-router"
+import {Link, useParams} from "react-router-dom";
 
-var formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
 })
 
 const TransitCardList = () => {
-  const [transitcards, setTransitCards] = useState([]);
+  const navigate = useNavigate();
   const params = useParams();
+
+  const [transitcards, setTransitCards] = useState([]);
   const findTransitCardsById = () =>
       fetch(`http://localhost:8080/api/users/${params.id}/transitcards`)
       .then(res => res.json())
       .then(transitcards => setTransitCards(transitcards));
   useEffect(findTransitCardsById, [params.id])
+
   const [tickets, setTickets] = useState([]);
   const findTickets = () =>
       fetch(`http://localhost:8080/api/transitcards/${params.id}/tickets`)
       .then(res => res.json())
       .then(tickets => setTickets(tickets))
   useEffect(findTickets, [params.id])
+
   return(
     <div>
       <h1>
@@ -31,6 +35,9 @@ const TransitCardList = () => {
           transitcards.map(transitcard =>
               <li key={transitcard.idtransitcards}>
                 Card #{transitcard.idtransitcards}
+                <Link to={`/transitcards/${transitcard.idtransitcards}/edit`}>
+                  Edit Card
+                </Link>
                 <ul>
                   <li>
                     Stored Value:&nbsp;
@@ -50,6 +57,7 @@ const TransitCardList = () => {
           )
         }
       </ul>
+      <button onClick={() => {navigate(-1)}}>Back</button>
     </div>
   );
 };
