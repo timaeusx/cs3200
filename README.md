@@ -33,10 +33,4 @@ A `Zone` may be labeled `1A` or numbered from `1` to `10`, with the special zone
 A UML diagram can be found [here](/diagram.pdf).
 
 ### To-do list
-Implement web app:
-- Users list screen
-- Users edit screen
-- TransitCard list screen
-- TransitCard edit screen
-- Ticket list screen
-- Ticket edit screen
+Nothing for now!
