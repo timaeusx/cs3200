@@ -6,25 +6,25 @@ import TransitCardService from "./TransitCardService";
 const {useState, useEffect} = React;
 
 const TransitCardFormEditor = () => {
-  const {id} = useParams();
+  const {id: idtransitcards} = useParams();
   const navigate = useNavigate();
   const [card, setCard] = useState({});
   useEffect(() => {
-    if(id !== "new") {
-      findTransitCardById(id)
+    if(idtransitcards !== "new") {
+      findTransitCardById(idtransitcards)
     }
-  }, [id])
+  }, [idtransitcards])
   const createTransitCard = (card) => {
     TransitCardService.createTransitCard(card).then(() => navigate(-1))
   }
-  const findTransitCardById = (id) => {
-    TransitCardService.findTransitCardById(id).then(card => setCard(card))
+  const findTransitCardById = (idtransitcards) => {
+    TransitCardService.findTransitCardById(idtransitcards).then(card => setCard(card))
   }
-  const deleteTransitCard = (id) => {
-    TransitCardService.deleteTransitCard(id).then(() => navigate(-1))
+  const deleteTransitCard = (idtransitcards) => {
+    TransitCardService.deleteTransitCard(idtransitcards).then(() => navigate(-1))
   }
-  const updateTransitCard = (id, newCard) => {
-    TransitCardService.updateTransitCard(id, newCard).then(() => navigate(-1))
+  const updateTransitCard = (idtransitcards, newCard) => {
+    TransitCardService.updateTransitCard(idtransitcards, newCard).then(() => navigate(-1))
   }
   return (
       <div>
@@ -38,8 +38,8 @@ const TransitCardFormEditor = () => {
         <input onChange = {(e) => setCard(card => ({...card, expiration: e.target.value}))}
                value={card.expiration}/><br/>
         <button className="btn btn-warning" onClick={() => {navigate(-1)}}>Cancel</button>
-        <button className="btn btn-danger" onClick={() => {deleteTransitCard(card.id)}}>Delete</button>
-        <button className="btn btn-primary" onClick={() => {updateTransitCard(card.id, card)}}>Save</button>
+        <button className="btn btn-danger" onClick={() => {deleteTransitCard(card.idtransitcards)}}>Delete</button>
+        <button className="btn btn-primary" onClick={() => {updateTransitCard(card.idtransitcards, card)}}>Save</button>
         <button className="btn btn-success" onClick={() => {createTransitCard(card)}}>Create</button>
       </div>
   )

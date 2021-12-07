@@ -6,25 +6,25 @@ import TicketService from "./TicketService";
 const {useState, useEffect} = React;
 
 const TicketFormEditor = () => {
-  const {id} = useParams();
+  const {id: idtickets} = useParams();
   const navigate = useNavigate();
   const [ticket, setTicket] = useState({});
   useEffect(() => {
-    if(id !== "new") {
-      findTicketById(id)
+    if(idtickets !== "new") {
+      findTicketById(idtickets)
     }
-  }, [id])
+  }, [idtickets])
   const createTicket = (ticket) => {
     TicketService.createTicket(ticket).then(() => navigate(-1))
   }
-  const findTicketById = (id) => {
-    TicketService.findTicketById(id).then(ticket => setTicket(ticket))
+  const findTicketById = (idtickets) => {
+    TicketService.findTicketById(idtickets).then(ticket => setTicket(ticket))
   }
-  const deleteTicket = (id) => {
-    TicketService.deleteTicket(id).then(() => navigate(-1))
+  const deleteTicket = (idtickets) => {
+    TicketService.deleteTicket(idtickets).then(() => navigate(-1))
   }
-  const updateTicket = (id, newTicket) => {
-    TicketService.updateTicket(id, newTicket).then(() => navigate(-1))
+  const updateTicket = (idtickets, newTicket) => {
+    TicketService.updateTicket(idtickets, newTicket).then(() => navigate(-1))
   }
   return (
       <div>
@@ -34,7 +34,7 @@ const TicketFormEditor = () => {
         <label>Expiration</label>
         <input onChange = {(e) => setTicket(ticket => ({...ticket, expiration: e.target.value}))}
                value={ticket.expiration}/><br/>
-        <label>Stored Value</label>
+        <label>Monthly Pass</label>
         <input onChange = {(e) => setTicket(ticket => ({...ticket, monthlypass: e.target.value}))}
                value={ticket.monthlypass}/><br/>
         <label>Origin Zone</label>
@@ -44,8 +44,8 @@ const TicketFormEditor = () => {
         <input onChange = {(e) => setTicket(ticket => ({...ticket, destination: e.target.value}))}
                value={ticket.destination}/><br/>
         <button className="btn btn-warning" onClick={() => {navigate(-1)}}>Cancel</button>
-        <button className="btn btn-danger" onClick={() => {deleteTicket(ticket.id)}}>Delete</button>
-        <button className="btn btn-primary" onClick={() => {updateTicket(ticket.id, ticket)}}>Save</button>
+        <button className="btn btn-danger" onClick={() => {deleteTicket(ticket.idtickets)}}>Delete</button>
+        <button className="btn btn-primary" onClick={() => {updateTicket(ticket.idtickets, ticket)}}>Save</button>
         <button className="btn btn-success" onClick={() => {createTicket(ticket)}}>Create</button>
       </div>
   )
