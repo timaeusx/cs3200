@@ -18,7 +18,7 @@ const UserList = () => {
           Users
         </h1>
         <button className = "btn btn-primary"
-                onClick = {() => navigate("/users/new")}>
+                onClick = {() => navigate("/users/new/edit")}>
           New User...
           </button>
         <ul className="list-group">

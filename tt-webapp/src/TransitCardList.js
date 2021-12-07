@@ -30,13 +30,17 @@ const TransitCardList = () => {
       <h1>
         Cards
       </h1>
+      <button className = "btn btn-primary"
+              onClick = {() => navigate("/cards/new/edit")}>
+        New Card...
+      </button>
       <ul>
         {
           transitcards.map(transitcard =>
               <li key={transitcard.idtransitcards}>
                 Card #{transitcard.idtransitcards}
                 <Link to={`/transitcards/${transitcard.idtransitcards}/edit`}>
-                  Edit Card
+                  &nbsp;Edit Card
                 </Link>
                 <ul>
                   <li>
@@ -48,7 +52,7 @@ const TransitCardList = () => {
                   </li>
                   {tickets.length > 0 &&
                   <li key={transitcard.idtransitcards}>
-                    <Link to={`/transitcards/${transitcard.idtransitcards}`}>
+                    <Link to={`/transitcards/${transitcard.idtransitcards}/tickets`}>
                       Tickets
                     </Link>
                   </li>}
