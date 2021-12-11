@@ -9,6 +9,9 @@ Modern transportation systems serve high volumes of passengers, and must manage 
 ### Solution statement
 The modernization of fare systems comes with a wealth of advantages. Electronic stored-value cards automate subway and bus fares, which can be flexibly adjusted, and electronic tickets can be quickly and easily purchased and verified digitally. As with most modernization projects, this solution requires the infrastructure to support it. Databases can play an important role in storing and serving passenger and ticket data, as they are flexible and scale well. This project models some aspects of a ticketing system that might be used in a public municipal and regional rail transportation system. It is loosely based on the Massachusetts Bay Transportation Authority's CharlieCard stored-value and Commuter Rail ticketing systems.
 
+### Typical users
+A flexible, scalable approach to storing passenger and ticketing information is of critical importance to any fare system. Therefore, the model explored in this project would be of most interest to municipal, regional, or inter-regional transportation authorities and system operators.
+
 ## Data models and relationships
 
 ### User data model
