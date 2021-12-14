@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router"
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -39,9 +39,15 @@ const TransitCardList = () => {
           transitcards.map(transitcard =>
               <li key={transitcard.idtransitcards}>
                 Card #{transitcard.idtransitcards}
-                <Link to={`/transitcards/${transitcard.idtransitcards}/edit`}>
-                  &nbsp;Edit Card
-                </Link>
+                <button className = "btn btn-primary"
+                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/edit`)}>
+                  Edit
+                </button>
+                {tickets.length > 0 &&
+                <button className = "btn btn-primary"
+                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/tickets`)}>
+                  Tickets
+                </button>}
                 <ul>
                   <li>
                     Stored Value:&nbsp;
@@ -50,12 +56,6 @@ const TransitCardList = () => {
                   <li>
                     Expiration:&nbsp;{transitcard.expiration}
                   </li>
-                  {tickets.length > 0 &&
-                  <li key={transitcard.idtransitcards}>
-                    <Link to={`/transitcards/${transitcard.idtransitcards}/tickets`}>
-                      Tickets
-                    </Link>
-                  </li>}
                 </ul>
               </li>
           )

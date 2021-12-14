@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import UserService from "./UserService";
 const {useEffect, useState} = React;
@@ -17,22 +16,26 @@ const UserList = () => {
         <h1>
           Users
         </h1>
-        <button className = "btn btn-primary"
-                onClick = {() => navigate("/users/new/edit")}>
-          New User...
+          <button className = "btn btn-primary"
+                  onClick = {() => navigate("/users/new/edit")}>
+            New User...
           </button>
         <ul className="list-group">
           {
             users.map(user =>
-                <li className="list-group-item" key={user.id}>
-                  {user.firstname}&nbsp;{user.lastname}
-                  &nbsp;<Link to={`/users/${user.id}/edit`}>
-                    Edit
-                  </Link>
-                  &nbsp;<Link to={`/users/${user.id}/transitcards`}>
-                    View Cards
-                  </Link>
-                </li>
+              <li className="list-group-item" key={user.id}>
+                {user.firstname}&nbsp;{user.lastname}
+                &nbsp;
+                <button className = "btn btn-primary"
+                        onClick = {() => navigate(`/users/${user.id}/edit`)}>
+                  Edit
+                </button>
+                &nbsp;
+                <button className = "btn btn-primary"
+                        onClick = {() => navigate(`/users/${user.id}/transitcards`)}>
+                  View Cards
+                </button>
+              </li>
             )
           }
         </ul>

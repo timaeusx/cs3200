@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router"
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 const TicketList = () => {
 
@@ -27,10 +27,11 @@ const TicketList = () => {
         {
           tickets.map(ticket =>
               <li key={ticket.idtickets}>
-                Ticket ID:&nbsp;{ticket.idtickets}
-                <Link to={`/tickets/${ticket.idtickets}/edit`}>
-                  &nbsp;Edit Ticket
-                </Link>
+                Ticket #{ticket.idtickets}
+                <button className = "btn btn-primary"
+                        onClick = {() => navigate(`/tickets/${ticket.idtickets}/edit`)}>
+                  Edit
+                </button>
                 <ul>
                   <li>
                     Expiration:&nbsp;{ticket.expiration}
