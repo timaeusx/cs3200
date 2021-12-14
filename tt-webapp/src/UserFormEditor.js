@@ -53,6 +53,11 @@ const UserFormEditor = () => {
         <button className="btn btn-danger" onClick={() => {deleteUser(user.id)}}>Delete</button>
         <button className="btn btn-primary" onClick={() => {updateUser(user.id, user)}}>Save</button>
         <button className="btn btn-success" onClick={() => {createUser(user)}}>Create</button>
+        <button className="btn btn-primary"
+                onClick = {() => navigate(`/users/${user.id}/transitcards`,
+                    {state : {id : user.id, fn : user.firstname}})}>
+          View Cards
+        </button>
       </div>
   )
 }
