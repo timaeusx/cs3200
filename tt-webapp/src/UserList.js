@@ -6,7 +6,6 @@ const {useEffect, useState} = React;
 const UserList = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-
   const findAllUsers = () =>
       UserService.findAllUsers().then(users => setUsers(users));
   useEffect(findAllUsers, []);
@@ -27,13 +26,14 @@ const UserList = () => {
                 {user.firstname}&nbsp;{user.lastname}
                 &nbsp;
                 <button className = "btn btn-primary"
-                        onClick = {() => navigate(`/users/${user.id}/edit`)}>
+                        onClick = {() => navigate(`/users/${user.id}/edit`, {state : user.id})}>
                   Edit
                 </button>
+
                 &nbsp;
                 <button className = "btn btn-primary"
-                        onClick = {() => navigate(`/users/${user.id}/transitcards`)}>
-                  View Cards
+                        onClick = {() => navigate(`/users/${user.id}/transitcards`, {state : user.id})}>
+                  Cards
                 </button>
               </li>
             )

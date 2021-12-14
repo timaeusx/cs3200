@@ -1,6 +1,7 @@
 package com.example.ttserver.daos;
 
 import com.example.ttserver.models.TransitCard;
+import com.example.ttserver.models.User;
 import com.example.ttserver.repositories.TransitCardRepository;
 import com.example.ttserver.repositories.UserRepository;
 import java.util.List;
@@ -23,6 +24,16 @@ public class TransitCardDao {
 
   @PostMapping("/api/transitcards")
   public TransitCard createTransitCard(@RequestBody TransitCard card) {
+    return transitCardRepository.save(card);
+  }
+
+  @PostMapping("/api/users/{uid}/transitcards")
+  public TransitCard createTransitCardForUser(
+      @PathVariable("uid") Integer uid,
+      @RequestBody TransitCard card) {
+    card = transitCardRepository.save(card);
+    User user = userRepository.findById(uid).get();
+    card.setOwnedBy(user);
     return transitCardRepository.save(card);
   }
 

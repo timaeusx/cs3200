@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router"
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
+import UserService from "./UserService";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -10,6 +11,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 const TransitCardList = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
 
   const [transitcards, setTransitCards] = useState([]);
   const findTransitCardsById = () =>
@@ -25,10 +27,13 @@ const TransitCardList = () => {
       .then(tickets => setTickets(tickets))
   useEffect(findTickets, [params.id])
 
+  const user = UserService.findUserById(location.state)
+  console.log("Getting user with ID: " + location.state)
+  console.log(user.id)
   return(
     <div>
       <h1>
-        Cards
+        {user.firstname}'s Cards
       </h1>
       <button className = "btn btn-primary"
               onClick = {() => navigate("/transitcards/new/edit")}>
@@ -40,12 +45,12 @@ const TransitCardList = () => {
               <li key={transitcard.idtransitcards}>
                 Card #{transitcard.idtransitcards}
                 <button className = "btn btn-primary"
-                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/edit`)}>
+                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/edit`, {state : user.id})}>
                   Edit
                 </button>
                 {tickets.length > 0 &&
                 <button className = "btn btn-primary"
-                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/tickets`)}>
+                        onClick = {() => navigate(`/transitcards/${transitcard.idtransitcards}/tickets`, {state : user.id})}>
                   Tickets
                 </button>}
                 <ul>

@@ -1,6 +1,8 @@
 package com.example.ttserver.daos;
 
 import com.example.ttserver.models.Ticket;
+import com.example.ttserver.models.TransitCard;
+import com.example.ttserver.models.User;
 import com.example.ttserver.repositories.TicketRepository;
 import com.example.ttserver.repositories.TransitCardRepository;
 import java.util.List;
@@ -23,6 +25,16 @@ public class TicketDao {
 
   @PostMapping("/api/tickets")
   public Ticket createTicket(@RequestBody Ticket ticket) {
+    return ticketRepository.save(ticket);
+  }
+
+  @PostMapping("/api/transitcards/{cid}/tickets")
+  public Ticket createTicketForTransitCard(
+      @PathVariable("cid") Integer cid,
+      @RequestBody Ticket ticket) {
+    ticket = ticketRepository.save(ticket);
+    TransitCard card = transitCardRepository.findById(cid).get();
+    ticket.setStoredOn(card);
     return ticketRepository.save(ticket);
   }
 

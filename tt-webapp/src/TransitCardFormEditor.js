@@ -2,6 +2,7 @@ import React from "react";
 import {useNavigate} from "react-router";
 import {useLocation, useParams} from "react-router-dom";
 import TransitCardService from "./TransitCardService";
+import UserService from "./UserService";
 
 const {useState, useEffect} = React;
 
@@ -27,7 +28,8 @@ const TransitCardFormEditor = () => {
   const updateTransitCard = (idtransitcards, newCard) => {
     TransitCardService.updateTransitCard(idtransitcards, newCard).then(() => navigate(-1))
   }
-  // console.log(JSON.stringify(card))
+  const user = UserService.findUserById(location.state)
+  console.log(user.toString())
   return (
       <div>
         <h2>Card Editor</h2>
@@ -39,10 +41,7 @@ const TransitCardFormEditor = () => {
         <label>Expiration</label>
         <input onChange = {(e) => setCard(card => ({...card, expiration: e.target.value}))}
                value={card.expiration}/><br/>
-        {/*<label>Owned by</label>*/}
-        {/*<input onChange = {(e) => setCard(card => ({...card, ownedBy: e.target.value}))}*/}
-        {/*       value={card.ownedBy}/><br/>*/}
-        <button className="btn btn-warning" onClick={() => {navigate(`/users/${location.state.userid}/edit`)}}>Edit Owner</button>
+        <button className="btn btn-warning" onClick={() => {navigate(`/users/${user.firstname}/edit`)}}>Edit Owner</button>
         <button className="btn btn-warning" onClick={() => {navigate(-1)}}>Cancel</button>
         <button className="btn btn-danger" onClick={() => {deleteTransitCard(card.idtransitcards)}}>Delete</button>
         <button className="btn btn-primary" onClick={() => {updateTransitCard(card.idtransitcards, card)}}>Save</button>
@@ -51,6 +50,7 @@ const TransitCardFormEditor = () => {
           View Tickets
         </button>
       </div>
+
   )
 }
 
