@@ -43,6 +43,7 @@ export const updateTicket = (id, ticket) =>
 
 // Export all functions as the API to this service
 const services = {
+  createTicketForTransitCard,
   findAllTickets,
   findTicketById,
   deleteTicket,
