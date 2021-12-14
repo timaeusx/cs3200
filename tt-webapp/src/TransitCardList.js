@@ -31,7 +31,7 @@ const TransitCardList = () => {
         Cards
       </h1>
       <button className = "btn btn-primary"
-              onClick = {() => navigate("/cards/new/edit")}>
+              onClick = {() => navigate("/transitcards/new/edit")}>
         New Card...
       </button>
       <ul>
