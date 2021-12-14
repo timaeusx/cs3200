@@ -1,6 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import TransitCardService from "./TransitCardService";
 
 const {useState, useEffect} = React;
@@ -9,6 +9,7 @@ const TransitCardFormEditor = () => {
   const {id: idtransitcards} = useParams();
   const navigate = useNavigate();
   const [card, setCard] = useState({});
+  const location = useLocation();
   useEffect(() => {
     if(idtransitcards !== "new") {
       findTransitCardById(idtransitcards)
@@ -26,6 +27,7 @@ const TransitCardFormEditor = () => {
   const updateTransitCard = (idtransitcards, newCard) => {
     TransitCardService.updateTransitCard(idtransitcards, newCard).then(() => navigate(-1))
   }
+  // console.log(JSON.stringify(card))
   return (
       <div>
         <h2>Card Editor</h2>
@@ -37,10 +39,17 @@ const TransitCardFormEditor = () => {
         <label>Expiration</label>
         <input onChange = {(e) => setCard(card => ({...card, expiration: e.target.value}))}
                value={card.expiration}/><br/>
+        {/*<label>Owned by</label>*/}
+        {/*<input onChange = {(e) => setCard(card => ({...card, ownedBy: e.target.value}))}*/}
+        {/*       value={card.ownedBy}/><br/>*/}
+        <button className="btn btn-warning" onClick={() => {navigate(`/users/${location.state.userid}/edit`)}}>Edit Owner</button>
         <button className="btn btn-warning" onClick={() => {navigate(-1)}}>Cancel</button>
         <button className="btn btn-danger" onClick={() => {deleteTransitCard(card.idtransitcards)}}>Delete</button>
         <button className="btn btn-primary" onClick={() => {updateTransitCard(card.idtransitcards, card)}}>Save</button>
         <button className="btn btn-success" onClick={() => {createTransitCard(card)}}>Create</button>
+        <button className="btn btn-primary"  onClick = {() => navigate(`/transitcards/${card.idtransitcards}/tickets`)}>
+          View Tickets
+        </button>
       </div>
   )
 }
