@@ -1,5 +1,15 @@
 // Declare URL where server listens for HTTP requests
+const USERS_URL = "http://localhost:8080/api/users"
 const TCS_URL = "http://localhost:8080/api/transitcards"
+
+// Create a transit card for a user
+export const createTransitCardForUser = (uid, tc) =>
+    fetch(`${USERS_URL}/${uid}/transitcards`, {
+      method: 'POST',
+      body: JSON.stringify(tc),
+      headers: {
+        'content-type': 'application/json'}
+    }).then(response => response.json())
 
 // Retrieve all transit cards from the server
 export const findAllTransitCards = () =>
